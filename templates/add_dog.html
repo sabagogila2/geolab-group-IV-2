@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Share experience</h1>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.name(class="form-control mt-2", placeholder="Enter your name here") }}
+        {{ form.event(class="form-control mt-2", placeholder="Enter event name, date, etc.") }}
+        {{ form.topic(class="form-control mt-2")}}
+        {{ form.img(class="form-control mt-2", placeholder="IMG") }}
+        {{ form.description(class="form-control mt-2", placeholder="Type detailed description") }}
+        {{ form.submit(class="bg-warning mt-2 mb-2 form-control" ) }}
+    </form>
+{% endblock %}

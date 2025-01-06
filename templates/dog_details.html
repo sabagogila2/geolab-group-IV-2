@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row mt-5 ">
+    <div class="col ">
+        <div class="card mt-5 " style="width: 50rem;">
+            <img src="../static/{{ dog.img }}"
+                 class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ dog.name }}</h5>
+                <p class="card-text">{{ dog.topic }}</p>
+                <p class="card-text">{{ dog.description }}</p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class ="card mb-4 mt-4 ml-100">
+    <div class="card-body">
+        <h4 class="card-title">Leave a Comment</h4>
+        {% if current_user.is_authenticated %}
+        <form method="POST">
+            <div class="form-group">
+                <textarea name="content" class="form-control" rows="3" placeholder="Write your comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary mt-2">Post comment</button>
+        </form>
+        {% else %}
+        <p class="text-muted">You must <a href="{{ url_for('login2')}}">Log In</a> to leave a comment </p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Comments</h4>
+        {% if dog.comment %}
+            {% for comment in dog.comment %}
+            <div class="mb-3">
+                <strong>{{ comment.user.username }}</strong> says:
+                <p>{{ comment.content }}</p>
+                <hr>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="text-muted">No comments yet. Be the first to comment!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
